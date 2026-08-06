@@ -1,0 +1,13 @@
+# Databases
+*.db
+vgs_academy.db
+
+# Python Cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Operating System Files
+.DS_Store
+Thumbs.db
