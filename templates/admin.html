@@ -177,9 +177,83 @@
 
   /* --- DASHBOARD LAYOUT --- */
   .dashboard-container {
-    display: none;
+    display: flex;
+    height: 100vh;
+    background-color: var(--navy-deep);
+  }
+
+  .sidebar {
+    width: 260px;
+    background-color: var(--navy-mid);
+    border-right: 1px solid var(--border-color);
+    display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    height: 100%;
+    flex-shrink: 0;
+  }
+
+  .sidebar-header {
+    padding: 24px;
+    border-bottom: 1px solid var(--border-color);
+  }
+
+  .sidebar-nav {
+    padding: 20px 0;
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .nav-item {
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--text-muted);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+
+  .nav-item:hover {
+    color: #fff;
+    background-color: rgba(255,255,255,0.05);
+  }
+
+  .nav-item.active {
+    color: var(--gold);
+    background-color: rgba(212, 175, 55, 0.1);
+    border-right: 3px solid var(--gold);
+  }
+
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .top-header {
+    height: 70px;
+    padding: 0 30px;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--navy-deep);
+  }
+
+  .content-area {
+    flex: 1;
+    padding: 30px;
+    overflow-y: auto;
+  }
+
+  .tab-pane {
+    display: none;
+  }
+  .tab-pane.active {
+    display: block;
   }
 
   /* Header */
@@ -647,98 +721,291 @@
 
   <!-- ===================== DASHBOARD VIEW ===================== -->
   <div class="dashboard-container" id="dashboard-view">
-    <header class="dash-header">
-      <a href="index.html" class="dash-brand">
-        <div class="dash-brand-logo">V</div>
-        <div class="dash-brand-text">
-          <h1>VGS Academy</h1>
-          <span>ADMINISTRATION</span>
-        </div>
-      </a>
-      <div class="user-menu">
-        <div class="user-info">Logged in as <strong>Admin</strong></div>
-        <button class="btn btn-outline btn-sm" id="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
+    
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <a href="index.html" class="dash-brand" style="text-decoration:none;">
+          <div class="dash-brand-logo">V</div>
+          <div class="dash-brand-text">
+            <h1>VGS Academy</h1>
+            <span>ADMIN CMS</span>
+          </div>
+        </a>
       </div>
-    </header>
+      <div class="sidebar-nav">
+        <div class="nav-item active" data-target="tab-dashboard"><i class="fa-solid fa-chart-pie"></i> Dashboard</div>
+        <div class="nav-item" data-target="tab-settings"><i class="fa-solid fa-gear"></i> Site Settings</div>
+        <div class="nav-item" data-target="tab-courses"><i class="fa-solid fa-book-open"></i> Courses</div>
+        <div class="nav-item" data-target="tab-gallery"><i class="fa-solid fa-images"></i> Gallery</div>
+      </div>
+    </div>
 
-    <main class="dash-main">
-      <!-- Metrics -->
-      <div class="metrics-grid">
-        <div class="metric-card total">
-          <div class="metric-info">
-            <h3>Total Enquiries</h3>
-            <div class="value" id="metric-total">0</div>
-          </div>
-          <div class="metric-icon"><i class="fa-solid fa-inbox"></i></div>
-        </div>
-        <div class="metric-card pending">
-          <div class="metric-info">
-            <h3>Pending Follow-up</h3>
-            <div class="value" id="metric-pending">0</div>
-          </div>
-          <div class="metric-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
-        </div>
-        <div class="metric-card contacted">
-          <div class="metric-info">
-            <h3>Contacted</h3>
-            <div class="value" id="metric-contacted">0</div>
-          </div>
-          <div class="metric-icon"><i class="fa-solid fa-user-check"></i></div>
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="top-header">
+        <h2 id="page-title">Dashboard Overview</h2>
+        <div class="user-menu">
+          <div class="user-info">Logged in as <strong>Admin</strong></div>
+          <button class="btn btn-outline btn-sm" id="logout-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</button>
         </div>
       </div>
 
-      <!-- Data Table Card -->
-      <div class="table-card">
-        <div class="table-header-toolbar">
-          <h2 class="table-title">Student Enquiries</h2>
-          <div class="toolbar-filters">
-            <select class="filter-select" id="filter-class">
-              <option value="all">All Classes</option>
-              <option value="Class 6">Class 6</option>
-              <option value="Class 7">Class 7</option>
-              <option value="Class 8">Class 8</option>
-              <option value="Class 9">Class 9</option>
-              <option value="Class 10">Class 10</option>
-              <option value="Sainik School Aspirant">Sainik School</option>
-              <option value="Olympiad Aspirant">Olympiad</option>
-            </select>
-            <select class="filter-select" id="filter-status">
-              <option value="all">All Statuses</option>
-              <option value="pending">Pending</option>
-              <option value="contacted">Contacted</option>
-              <option value="archived">Archived</option>
-            </select>
-            <button class="btn btn-outline btn-sm" id="refresh-btn"><i class="fa-solid fa-arrows-rotate"></i> Refresh</button>
+      <div class="content-area">
+        
+        <!-- DASHBOARD TAB -->
+        <div id="tab-dashboard" class="tab-pane active">
+          <div class="metrics-grid">
+            <div class="metric-card total">
+              <div class="metric-info">
+                <h3>Total Enquiries</h3>
+                <div class="value" id="metric-total">0</div>
+              </div>
+              <div class="metric-icon"><i class="fa-solid fa-inbox"></i></div>
+            </div>
+            <div class="metric-card pending">
+              <div class="metric-info">
+                <h3>Pending Follow-up</h3>
+                <div class="value" id="metric-pending">0</div>
+              </div>
+              <div class="metric-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+            </div>
+            <div class="metric-card contacted">
+              <div class="metric-info">
+                <h3>Contacted</h3>
+                <div class="value" id="metric-contacted">0</div>
+              </div>
+              <div class="metric-icon"><i class="fa-solid fa-user-check"></i></div>
+            </div>
+            <div class="metric-card users">
+              <div class="metric-info">
+                <h3>Registered Users</h3>
+                <div class="value" id="metric-users">0</div>
+              </div>
+              <div class="metric-icon" style="background-color: rgba(66, 133, 244, 0.1); color: #4285F4;"><i class="fa-brands fa-google"></i></div>
+            </div>
+          </div>
+
+          <!-- Enquiries Table -->
+          <div class="table-card" style="margin-bottom: 24px;">
+            <div class="table-header-toolbar">
+              <h2 class="table-title">Student Enquiries</h2>
+              <div class="toolbar-filters">
+                <select class="filter-select" id="filter-class">
+                  <option value="all">All Classes</option>
+                  <option value="Class 6">Class 6</option>
+                  <option value="Class 7">Class 7</option>
+                  <option value="Class 8">Class 8</option>
+                  <option value="Class 9">Class 9</option>
+                  <option value="Class 10">Class 10</option>
+                  <option value="Sainik School Aspirant">Sainik School</option>
+                  <option value="Olympiad Aspirant">Olympiad</option>
+                </select>
+                <select class="filter-select" id="filter-status">
+                  <option value="all">All Statuses</option>
+                  <option value="pending">Pending</option>
+                  <option value="contacted">Contacted</option>
+                  <option value="archived">Archived</option>
+                </select>
+                <button class="btn btn-outline btn-sm" id="refresh-btn"><i class="fa-solid fa-arrows-rotate"></i> Refresh</button>
+              </div>
+            </div>
+            <div class="table-wrapper">
+              <table id="enquiries-table">
+                <thead>
+                  <tr>
+                    <th>Student Details</th>
+                    <th>Class</th>
+                    <th>Enquiry Message</th>
+                    <th>Status</th>
+                    <th>Date Received</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="table-body">
+                  <tr><td colspan="6" class="no-data"><i class="fa-solid fa-circle-notch fa-spin"></i> Loading...</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Users Table Card -->
+          <div class="table-card">
+            <div class="table-header-toolbar">
+              <h2 class="table-title">Registered Users (Google Auth)</h2>
+            </div>
+            <div class="table-wrapper">
+              <table id="users-table">
+                <thead>
+                  <tr>
+                    <th>Profile</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Registration Date</th>
+                  </tr>
+                </thead>
+                <tbody id="users-table-body">
+                  <tr><td colspan="4" class="no-data"><i class="fa-solid fa-circle-notch fa-spin"></i> Loading users...</td></tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
 
-        <div class="table-wrapper">
-          <table id="enquiries-table">
-            <thead>
-              <tr>
-                <th>Student Details</th>
-                <th>Class</th>
-                <th>Enquiry Message</th>
-                <th>Status</th>
-                <th>Date Received</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="table-body">
-              <tr>
-                <td colspan="6" class="no-data">
-                  <i class="fa-solid fa-circle-notch fa-spin"></i> Loading enquiries...
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- SETTINGS TAB -->
+        <div id="tab-settings" class="tab-pane">
+          <div class="table-card" style="padding: 30px;">
+            <h2 style="margin-bottom: 20px;">Global Site Settings</h2>
+            <form id="settings-form">
+              <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" class="form-control" id="setting-phone" required>
+              </div>
+              <div class="form-group">
+                <label>Instagram URL</label>
+                <input type="text" class="form-control" id="setting-instagram" required>
+              </div>
+              <div class="form-group">
+                <label>Physical Location (Address)</label>
+                <input type="text" class="form-control" id="setting-location" required>
+              </div>
+              <div class="form-group">
+                <label>Navbar Icon URL (SVG or Image URL)</label>
+                <input type="text" class="form-control" id="setting-navicon" required>
+              </div>
+              <button type="submit" class="btn btn-gold">Save Settings</button>
+            </form>
+          </div>
         </div>
-      </div>
-    </main>
 
-    <footer class="dash-footer">
-      © 2026 VGS Academy Dashboard · Secured Administration Panel
-    </footer>
+        <!-- COURSES TAB -->
+        <div id="tab-courses" class="tab-pane">
+          <div class="table-card" style="padding: 30px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 20px;">
+              <h2>Manage Courses</h2>
+              <button class="btn btn-gold btn-sm" id="btn-add-course"><i class="fa-solid fa-plus"></i> Add Course</button>
+            </div>
+            <div id="courses-list" style="display: flex; flex-direction: column; gap: 15px;">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- GALLERY TAB -->
+        <div id="tab-gallery" class="tab-pane">
+          <div class="table-card" style="padding: 30px;">
+            <!-- Gallery Header -->
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <h2 style="color: var(--white); margin:0;">Manage Gallery</h2>
+            <div style="display:flex; gap:10px;"><button class="btn btn-outline-light" id="btn-open-categories-modal"><i class="fa-solid fa-folder-open"></i> Manage Categories</button><button class="btn btn-warning" id="btn-open-gallery-modal"><i class="fa-solid fa-plus"></i> Add Image URL</button></div>
+          </div>
+          
+          <!-- Admin Category Filters -->
+          <div id="admin-gallery-filters" style="display:flex; gap:10px; margin-bottom: 20px; flex-wrap:wrap;">
+            <!-- Dynamically populated -->
+          </div>
+
+          <div id="gallery-list" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 15px;">
+            <!-- Dynamically populated -->
+          </div>
+
+          <!-- Custom Gallery Modal -->
+          <div id="gallery-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+            <div style="background:var(--navy-light); padding:30px; border-radius:10px; width:400px; max-width:90%; border:1px solid var(--border-color);">
+              <h3 style="color:#fff; margin-top:0; margin-bottom:20px;">Add Gallery Image</h3>
+              
+              <div class="form-group" style="margin-bottom:15px;">
+                <label style="color:var(--text-color); display:block; margin-bottom:5px;">Image URL *</label>
+                <input type="text" id="modal-img-url" class="form-control" placeholder="https://example.com/image.jpg" style="width:100%;">
+              </div>
+              
+              <div class="form-group" style="margin-bottom:15px;">
+                <label style="color:var(--text-color); display:block; margin-bottom:5px;">Caption</label>
+                <input type="text" id="modal-img-caption" class="form-control" placeholder="Optional caption" style="width:100%;">
+              </div>
+              
+              <div class="form-group" style="margin-bottom:25px;">
+                <label style="color:var(--text-color); display:block; margin-bottom:5px;">Category</label>
+                <select id="modal-img-category-select" class="form-control" style="width:100%; margin-bottom:10px; padding:10px; background:rgba(255,255,255,0.05); color:#fff; border:1px solid var(--border-color); border-radius:6px;">
+                  <option value="Campus" style="color:#000;">Campus</option>
+                  <option value="Events" style="color:#000;">Events</option>
+                  <option value="_new_" style="color:#000;">+ Add New Category...</option>
+                </select>
+                <input type="text" id="modal-img-category-new" class="form-control" placeholder="Type new category name" style="width:100%; display:none;">
+              </div>
+              
+              <div style="display:flex; justify-content:flex-end; gap:10px;">
+                <button class="btn btn-outline-light" id="btn-close-gallery-modal">Cancel</button>
+                <button class="btn btn-warning" id="btn-submit-gallery-modal">Save Image</button>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+
+          <!-- Manage Categories Modal -->
+          <div id="categories-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+            <div style="background:var(--navy-light); padding:30px; border-radius:10px; width:500px; max-width:90%; border:1px solid var(--border-color); max-height:80vh; overflow-y:auto;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h3 style="color:#fff; margin:0;">Manage Categories</h3>
+                <button class="btn btn-outline-light btn-sm" id="btn-close-categories-modal"><i class="fa-solid fa-xmark"></i></button>
+              </div>
+              
+              <div style="margin-bottom:25px; display:flex; flex-direction:row; align-items:stretch; gap:10px; width:100%;">
+                <input type="text" id="new-category-name" placeholder="New Category Name" style="flex:1; padding:12px 16px; border-radius:8px; border:1px solid var(--border-color); background:rgba(255,255,255,0.05); color:#fff; font-size:1rem; outline:none;">
+                <button class="btn btn-gold" id="btn-add-category" style="white-space:nowrap; padding:0 24px;">Add</button>
+              </div>
+              <div id="categories-list" style="display:flex; flex-direction:column; gap:10px;">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Add/Edit Course Modal -->
+          <div id="add-course-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; justify-content:center; align-items:center;">
+            <div style="background:var(--navy-light); padding:30px; border-radius:10px; width:500px; max-width:90%; border:1px solid var(--border-color); max-height:85vh; overflow-y:auto;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h3 id="course-modal-title" style="color:#fff; margin:0;">Add New Course</h3>
+                <button class="btn btn-outline-light btn-sm" id="btn-close-course-modal"><i class="fa-solid fa-xmark"></i></button>
+              </div>
+              
+              <div style="display:flex; flex-direction:column; gap:15px; margin-bottom:25px;">
+                <input type="hidden" id="course-id" value="">
+                <input type="text" id="course-title" placeholder="Course Title (e.g. IIT Foundation)" style="padding:12px 15px; border-radius:8px; border:1px solid var(--border-color); background:rgba(255,255,255,0.05); color:#fff; width:100%;">
+                <input type="text" id="course-subtitle" placeholder="Subtitle (e.g. For classes 6th to 10th)" style="padding:12px 15px; border-radius:8px; border:1px solid var(--border-color); background:rgba(255,255,255,0.05); color:#fff; width:100%;">
+                <textarea id="course-desc" placeholder="Description..." rows="3" style="padding:12px 15px; border-radius:8px; border:1px solid var(--border-color); background:rgba(255,255,255,0.05); color:#fff; width:100%; resize:vertical;"></textarea>
+                <input type="text" id="course-icon" placeholder="FontAwesome Icon (e.g. fa-solid fa-book)" style="padding:12px 15px; border-radius:8px; border:1px solid var(--border-color); background:rgba(255,255,255,0.05); color:#fff; width:100%;">
+                <input type="text" id="course-image" placeholder="Background Image URL (Optional)" style="padding:12px 15px; border-radius:8px; border:1px solid var(--border-color); background:rgba(255,255,255,0.05); color:#fff; width:100%;">
+                <input type="text" id="course-bullets" placeholder="Bullets (comma separated)" style="padding:12px 15px; border-radius:8px; border:1px solid var(--border-color); background:rgba(255,255,255,0.05); color:#fff; width:100%;">
+                
+                <div style="display:flex; gap:10px;">
+                  <input type="text" id="course-badge-num" placeholder="Badge Num (e.g. 6-10)" style="flex:1; padding:12px 15px; border-radius:8px; border:1px solid var(--border-color); background:rgba(255,255,255,0.05); color:#fff;">
+                  <input type="text" id="course-badge-text" placeholder="Badge Text (e.g. Grade Levels)" style="flex:1; padding:12px 15px; border-radius:8px; border:1px solid var(--border-color); background:rgba(255,255,255,0.05); color:#fff;">
+                </div>
+              </div>
+              
+              <div style="display:flex; justify-content:flex-end; gap:10px;">
+                <button class="btn btn-outline-light" id="btn-cancel-course-modal">Cancel</button>
+                <button class="btn btn-gold" id="btn-submit-course-modal">Save Course</button>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Delete Confirmation Modal -->
+          <div id="delete-confirm-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:10000; justify-content:center; align-items:center;">
+            <div style="background:var(--navy-light); padding:30px; border-radius:10px; width:400px; max-width:90%; border:1px solid var(--border-color); text-align:center;">
+              <i class="fa-solid fa-triangle-exclamation" style="font-size:3rem; color:var(--danger); margin-bottom:20px;"></i>
+              <h3 style="color:#fff; margin-top:0; margin-bottom:10px;">Are you sure?</h3>
+              <p id="delete-confirm-text" style="color:var(--text-color); margin-bottom:25px;">Do you really want to delete this image? This action cannot be undone.</p>
+              
+              <div style="display:flex; justify-content:center; gap:15px;">
+                <button class="btn btn-outline-light" id="btn-cancel-delete" style="min-width:100px;">Cancel</button>
+                <button class="btn btn-danger" id="btn-confirm-delete" style="background:var(--danger); color:#fff; border:none; min-width:100px;">Delete</button>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
   </div>
 
   <!-- Toast Message -->
@@ -839,6 +1106,7 @@
       loginView.style.display = 'none';
       dashboardView.style.display = 'flex';
       fetchEnquiries();
+      fetchUsers();
     }
 
     // Handle Login
@@ -901,6 +1169,38 @@
     });
 
     // Fetch Enquiries Data
+    
+    const usersTableBody = document.getElementById('users-table-body');
+    const metricUsers = document.getElementById('metric-users');
+
+    async function fetchUsers() {
+      try {
+        const response = await fetch(`${API_BASE}/api/admin/users`);
+        if (response.status === 401) return;
+        const data = await response.json();
+        
+        if (data.success) {
+          metricUsers.textContent = data.users.length;
+          
+          if (data.users.length === 0) {
+            usersTableBody.innerHTML = `<tr><td colspan="4" class="no-data"><i class="fa-solid fa-users"></i> No registered users yet.</td></tr>`;
+            return;
+          }
+          
+          usersTableBody.innerHTML = data.users.map(u => `
+            <tr>
+              <td><img src="${u.picture || 'https://via.placeholder.com/40'}" style="width:40px; height:40px; border-radius:50%; object-fit:cover;"></td>
+              <td style="font-weight:600;">${u.name}</td>
+              <td>${u.email}</td>
+              <td>${formatDate(u.created_at)}</td>
+            </tr>
+          `).join('');
+        }
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    }
+
     async function fetchEnquiries() {
       tableBody.innerHTML = `
         <tr>
@@ -1052,7 +1352,8 @@
         const data = await response.json();
         if (data.success) {
           showToast(`Enquiry status updated to ${newStatus}.`);
-          fetchEnquiries(); // Refresh list
+          fetchEnquiries();
+      fetchUsers(); // Refresh list
         } else {
           showToast(`Failed to update status: ${data.error}`, 'danger');
         }
@@ -1075,7 +1376,8 @@
         const data = await response.json();
         if (data.success) {
           showToast('Enquiry deleted successfully.');
-          fetchEnquiries(); // Refresh list
+          fetchEnquiries();
+      fetchUsers(); // Refresh list
         } else {
           showToast(`Failed to delete record: ${data.error}`, 'danger');
         }
@@ -1102,6 +1404,442 @@
     filterClass.addEventListener('change', renderTable);
     filterStatus.addEventListener('change', renderTable);
     refreshBtn.addEventListener('click', fetchEnquiries);
+  
+    // --- Tabs Navigation ---
+    const navItems = document.querySelectorAll('.nav-item');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+    const pageTitle = document.getElementById('page-title');
+    
+    navItems.forEach(item => {
+      item.addEventListener('click', () => {
+        navItems.forEach(n => n.classList.remove('active'));
+        tabPanes.forEach(t => t.classList.remove('active'));
+        
+        item.classList.add('active');
+        const target = document.getElementById(item.dataset.target);
+        if(target) target.classList.add('active');
+        
+        pageTitle.textContent = item.textContent.trim();
+        
+        // Fetch data based on tab
+        if (item.dataset.target === 'tab-settings') fetchSettings();
+        if (item.dataset.target === 'tab-courses') fetchAdminCourses();
+        if (item.dataset.target === 'tab-gallery') fetchCategories().then(() => fetchAdminGallery());
+      });
+    });
+
+    // --- Settings Management ---
+    const settingsForm = document.getElementById('settings-form');
+    async function fetchSettings() {
+      try {
+        const res = await fetch(`${API_BASE}/api/settings`);
+        const data = await res.json();
+        if (data.success) {
+          document.getElementById('setting-phone').value = data.settings.phone || '';
+          document.getElementById('setting-instagram').value = data.settings.instagram || '';
+          document.getElementById('setting-location').value = data.settings.location || '';
+          document.getElementById('setting-navicon').value = data.settings.nav_icon || '';
+        }
+      } catch(e) { console.error('Error fetching settings', e); }
+    }
+
+    settingsForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      try {
+        const res = await fetch(`${API_BASE}/api/admin/settings`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            phone: document.getElementById('setting-phone').value,
+            instagram: document.getElementById('setting-instagram').value,
+            location: document.getElementById('setting-location').value,
+            nav_icon: document.getElementById('setting-navicon').value
+          })
+        });
+        const data = await res.json();
+        if (data.success) showToast('Settings saved successfully!');
+        else showToast('Error saving settings', 'danger');
+      } catch (error) { showToast('Network error', 'danger'); }
+    });
+
+    // --- Courses Management ---
+    let allCourses = [];
+    async function fetchAdminCourses() {
+      try {
+        const res = await fetch(`${API_BASE}/api/courses`);
+        const data = await res.json();
+        const list = document.getElementById('courses-list');
+        if (data.success) {
+          allCourses = data.courses;
+          if(data.courses.length === 0) {
+            list.innerHTML = `<div class="no-data">No courses found. Add one!</div>`;
+            return;
+          }
+          list.innerHTML = data.courses.map(c => `
+            <div style="background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); padding: 15px; border-radius: 8px; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <h4 style="margin:0; color:var(--gold);">${c.title}</h4>
+                <div style="font-size:12px; color:#aaa; margin-top:4px;">${c.subtitle}</div>
+              </div>
+              <div style="display:flex; gap:10px;">
+                <button class="btn btn-outline-light btn-sm" onclick="editCourse(${c.id})"><i class="fa-solid fa-pencil"></i> Edit</button>
+                <button class="btn btn-outline-danger btn-sm" onclick="deleteCourse(${c.id})"><i class="fa-solid fa-trash"></i> Delete</button>
+              </div>
+            </div>
+          `).join('');
+        }
+      } catch(e) { console.error(e); }
+    }
+    
+    window.editCourse = (id) => {
+      const course = allCourses.find(c => c.id === id);
+      if(!course) return;
+      document.getElementById('course-modal-title').innerText = 'Edit Course';
+      document.getElementById('course-id').value = course.id;
+      document.getElementById('course-title').value = course.title || '';
+      document.getElementById('course-subtitle').value = course.subtitle || '';
+      document.getElementById('course-desc').value = course.description || '';
+      document.getElementById('course-icon').value = course.icon || '';
+      document.getElementById('course-image').value = course.image_url || '';
+      document.getElementById('course-bullets').value = course.bullets || '';
+      document.getElementById('course-badge-num').value = course.badge_num || '';
+      document.getElementById('course-badge-text').value = course.badge_text || '';
+      document.getElementById('add-course-modal').style.display = 'flex';
+    };
+
+    document.getElementById('btn-add-course').addEventListener('click', () => {
+      document.getElementById('course-modal-title').innerText = 'Add New Course';
+      document.getElementById('course-id').value = '';
+      document.getElementById('course-title').value = '';
+      document.getElementById('course-subtitle').value = '';
+      document.getElementById('course-desc').value = '';
+      document.getElementById('course-icon').value = '';
+      document.getElementById('course-image').value = '';
+      document.getElementById('course-bullets').value = '';
+      document.getElementById('course-badge-num').value = '';
+      document.getElementById('course-badge-text').value = '';
+      document.getElementById('add-course-modal').style.display = 'flex';
+    });
+
+    document.getElementById('btn-close-course-modal').addEventListener('click', () => {
+      document.getElementById('add-course-modal').style.display = 'none';
+    });
+    
+    document.getElementById('btn-cancel-course-modal').addEventListener('click', () => {
+      document.getElementById('add-course-modal').style.display = 'none';
+    });
+
+    document.getElementById('btn-submit-course-modal').addEventListener('click', async () => {
+      const id = document.getElementById('course-id').value;
+      const title = document.getElementById('course-title').value.trim();
+      const subtitle = document.getElementById('course-subtitle').value.trim();
+      const description = document.getElementById('course-desc').value.trim();
+      const icon = document.getElementById('course-icon').value.trim() || "fa-solid fa-book";
+      const image_url = document.getElementById('course-image').value.trim();
+      const bullets = document.getElementById('course-bullets').value.trim();
+      const badge_num = document.getElementById('course-badge-num').value.trim();
+      const badge_text = document.getElementById('course-badge-text').value.trim();
+
+      if (!title) return;
+
+      try {
+        const endpoint = id ? `${API_BASE}/api/admin/courses/${id}` : `${API_BASE}/api/admin/courses`;
+        const method = id ? 'PUT' : 'POST';
+        const res = await fetch(endpoint, {
+          method: method,
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ title, subtitle, description, icon, image_url, bullets, badge_num, badge_text })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast(id ? 'Course updated!' : 'Course added!');
+          document.getElementById('add-course-modal').style.display = 'none';
+          fetchAdminCourses();
+        } else {
+          showToast(data.error || 'Error saving course', 'danger');
+        }
+      } catch(e) { showToast('Error saving course', 'danger'); }
+    });
+
+    window.deleteCourse = (id) => {
+      itemToDeleteId = id;
+      deleteType = 'course';
+      document.getElementById('delete-confirm-text').innerText = "Do you really want to delete this course? This action cannot be undone.";
+      deleteModal.style.display = 'flex';
+    };
+
+    
+    // --- Category Management ---
+    let globalCategories = [];
+
+    async function fetchCategories() {
+      try {
+        const res = await fetch(`${API_BASE}/api/categories`);
+        const data = await res.json();
+        if (data.success) {
+          globalCategories = data.categories;
+          renderCategoriesAdmin();
+          updateCategoryDropdown(globalCategories);
+          return globalCategories;
+        }
+      } catch(e) { console.error('Error fetching categories:', e); }
+      return [];
+    }
+
+    function renderCategoriesAdmin() {
+      // 1. Render in Manage Categories Modal
+      const list = document.getElementById('categories-list');
+      if (list) {
+        if (globalCategories.length === 0) {
+          list.innerHTML = '<div style="color:#aaa; text-align:center;">No categories found.</div>';
+        } else {
+          list.innerHTML = globalCategories.map(cat => `
+            <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.05); padding:10px 15px; border-radius:6px;">
+              <span style="color:#fff;">${cat.name}</span>
+              <button onclick="deleteCategory(${cat.id})" class="btn btn-sm btn-danger" style="background:var(--danger); border:none; color:#fff; padding:4px 8px; border-radius:4px; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          `).join('');
+        }
+      }
+
+      // 2. Render Filters in Gallery Tab
+      const filterContainer = document.getElementById('admin-gallery-filters');
+      if (filterContainer) {
+        const allCats = ['All', ...globalCategories.map(c => c.name)];
+        filterContainer.innerHTML = allCats.map(cat => 
+          `<button class="btn btn-sm ${cat === 'All' ? 'btn-warning' : 'btn-outline-light'} admin-filter-btn" data-cat="${cat}" style="padding:6px 14px; border-radius:20px;">${cat}</button>`
+        ).join('');
+
+        document.querySelectorAll('.admin-filter-btn').forEach(btn => {
+          btn.addEventListener('click', (e) => {
+            document.querySelectorAll('.admin-filter-btn').forEach(b => {
+              b.classList.remove('btn-warning');
+              b.classList.add('btn-outline-light');
+            });
+            e.target.classList.remove('btn-outline-light');
+            e.target.classList.add('btn-warning');
+            filterAdminGallery(e.target.getAttribute('data-cat'));
+          });
+        });
+      }
+    }
+
+    document.getElementById('btn-open-categories-modal')?.addEventListener('click', () => {
+      document.getElementById('categories-modal').style.display = 'flex';
+      fetchCategories();
+    });
+
+    document.getElementById('btn-close-categories-modal')?.addEventListener('click', () => {
+      document.getElementById('categories-modal').style.display = 'none';
+    });
+
+    document.getElementById('btn-add-category')?.addEventListener('click', async () => {
+      const name = document.getElementById('new-category-name').value.trim();
+      if(!name) return;
+      try {
+        const res = await fetch(`${API_BASE}/api/admin/categories`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ name })
+        });
+        const data = await res.json();
+        if(data.success) {
+          document.getElementById('new-category-name').value = '';
+          showToast('Category added!');
+          fetchCategories();
+        } else {
+          showToast(data.error || 'Error adding category', 'danger');
+        }
+      } catch(e) { showToast('Error adding category', 'danger'); }
+    });
+
+    window.deleteCategory = (id) => {
+      itemToDeleteId = id;
+      deleteType = 'category';
+      document.getElementById('delete-confirm-text').innerText = "Do you really want to delete this category? This will ALSO delete all images inside it!";
+      deleteModal.style.display = 'flex';
+      // Hide categories modal if open to prevent stacking confusion
+      document.getElementById('categories-modal').style.display = 'none';
+    };
+
+    // --- Gallery Management ---
+    let adminAllImages = [];
+
+    async function fetchAdminGallery() {
+      try {
+        const res = await fetch(`${API_BASE}/api/gallery`);
+        const data = await res.json();
+        const list = document.getElementById('gallery-list');
+        const filterContainer = document.getElementById('admin-gallery-filters');
+
+        if (data.success) {
+          adminAllImages = data.images;
+          
+          if(adminAllImages.length === 0) {
+            list.innerHTML = `<div class="no-data" style="grid-column: 1 / -1;">No images found. Add one!</div>`;
+            if (filterContainer) filterContainer.innerHTML = '';
+            return;
+          }
+
+          // Render images
+          list.innerHTML = adminAllImages.map(img => `
+            <div class="admin-gallery-item" data-cat="${img.category || 'All'}" style="position:relative; background: rgba(255,255,255,0.05); border: 1px solid var(--border-color); border-radius: 8px; overflow:hidden;">
+              <img src="${img.image_url}" style="width:100%; height:150px; object-fit:cover; display:block;">
+              <div style="padding:10px; font-size:12px; text-align:center;"><b>[${img.category || 'All'}]</b> ${img.caption || 'No caption'}</div>
+              <button onclick="deleteGalleryImage(${img.id})" style="position:absolute; top:5px; right:5px; background:var(--danger); color:#fff; border:none; border-radius:4px; padding:6px 10px; cursor:pointer; box-shadow:0 2px 5px rgba(0,0,0,0.5);" title="Delete Image"><i class="fa-solid fa-trash"></i></button>
+            </div>
+          `).join('');
+        }
+      } catch(e) { console.error(e); }
+    }
+
+    function filterAdminGallery(category) {
+      document.querySelectorAll('.admin-gallery-item').forEach(item => {
+        if (category === 'All' || item.getAttribute('data-cat') === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    }
+
+    
+    function updateCategoryDropdown(cats) {
+      const select = document.getElementById('modal-img-category-select');
+      if (!select) return;
+      const val = select.value;
+      select.innerHTML = cats.map(c => `<option value="${c.name}" style="color:#000;">${c.name}</option>`).join('') + '<option value="_new_" style="color:#000;">+ Add New Category...</option>';
+      
+      let found = false;
+      for(let i=0; i<select.options.length; i++) {
+        if(select.options[i].value === val) { select.value = val; found = true; break; }
+      }
+      if (!found && cats.length > 0) select.value = cats[0].name;
+    }
+    // Modal Logic
+    const galleryModal = document.getElementById('gallery-modal');
+    const catSelect = document.getElementById('modal-img-category-select');
+    const catNew = document.getElementById('modal-img-category-new');
+
+    if (catSelect) {
+      catSelect.addEventListener('change', (e) => {
+        if (catNew) catNew.style.display = e.target.value === '_new_' ? 'block' : 'none';
+      });
+    }
+
+    document.getElementById('btn-open-gallery-modal').addEventListener('click', () => {
+      document.getElementById('modal-img-url').value = '';
+      document.getElementById('modal-img-caption').value = '';
+      if (catSelect && catSelect.options.length > 1) {
+        catSelect.value = catSelect.options[0].value;
+        catSelect.dispatchEvent(new Event('change'));
+      } else if (catSelect) {
+        catSelect.value = '_new_';
+        catSelect.dispatchEvent(new Event('change'));
+      }
+      if (catNew) catNew.value = '';
+      galleryModal.style.display = 'flex';
+    });
+
+    document.getElementById('btn-close-gallery-modal').addEventListener('click', () => {
+      galleryModal.style.display = 'none';
+    });
+
+    document.getElementById('btn-submit-gallery-modal').addEventListener('click', async () => {
+      const image_url = document.getElementById('modal-img-url').value.trim();
+      if (!image_url) {
+        showToast('Image URL is required!', 'danger');
+        return;
+      }
+      const caption = document.getElementById('modal-img-caption').value.trim();
+      
+
+      let category = 'Campus';
+      if (catSelect) {
+        category = catSelect.value;
+        if (category === '_new_' && catNew) {
+          category = catNew.value.trim() || 'Campus';
+          // Auto-create category in backend if it doesn't exist
+          try {
+            await fetch(`${API_BASE}/api/admin/categories`, {
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              body: JSON.stringify({ name: category })
+            });
+            fetchCategories();
+          } catch(e) {}
+        }
+      }
+
+
+      try {
+        const res = await fetch(`${API_BASE}/api/admin/gallery`, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ image_url, caption, category })
+        });
+        const data = await res.json();
+        if (data.success) {
+          showToast('Image added!');
+          galleryModal.style.display = 'none';
+          fetchCategories().then(() => fetchAdminGallery());
+        } else {
+          showToast(data.error || 'Error adding image', 'danger');
+        }
+      } catch(e) { showToast('Error adding image', 'danger'); }
+    });
+
+    let itemToDeleteId = null;
+    let deleteType = null;
+    const deleteModal = document.getElementById('delete-confirm-modal');
+
+    window.deleteGalleryImage = (id) => {
+      itemToDeleteId = id;
+      deleteType = 'image';
+      document.getElementById('delete-confirm-text').innerText = "Do you really want to delete this image? This action cannot be undone.";
+      deleteModal.style.display = 'flex';
+    };
+
+    document.getElementById('btn-cancel-delete').addEventListener('click', () => {
+      itemToDeleteId = null;
+      deleteModal.style.display = 'none';
+      if (deleteType === 'category') {
+        document.getElementById('categories-modal').style.display = 'flex';
+      }
+    });
+
+    document.getElementById('btn-confirm-delete').addEventListener('click', async () => {
+      if(!itemToDeleteId) return;
+      deleteModal.style.display = 'none';
+      
+      try {
+        let endpoint = '';
+        if (deleteType === 'image') endpoint = `${API_BASE}/api/admin/gallery/${itemToDeleteId}`;
+        else if (deleteType === 'category') endpoint = `${API_BASE}/api/admin/categories/${itemToDeleteId}`;
+        else if (deleteType === 'course') endpoint = `${API_BASE}/api/admin/courses/${itemToDeleteId}`;
+
+        const res = await fetch(endpoint, { method: 'DELETE' });
+        const data = await res.json();
+        
+        if (data.success) {
+          if (deleteType === 'image') showToast('Image deleted!');
+          else if (deleteType === 'category') showToast('Category deleted!');
+          else if (deleteType === 'course') showToast('Course deleted!');
+          
+          if (deleteType === 'image' || deleteType === 'category') fetchCategories().then(() => fetchAdminGallery());
+          if (deleteType === 'course') fetchAdminCourses();
+          
+          if (deleteType === 'category') {
+            document.getElementById('categories-modal').style.display = 'flex';
+          }
+        } else {
+          showToast(data.error || 'Error deleting item', 'danger');
+        }
+      } catch(e) { showToast('Error deleting item', 'danger'); }
+      
+      itemToDeleteId = null;
+    });
+
   </script>
 </body>
 </html>

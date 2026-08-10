@@ -7,18 +7,19 @@
 <meta name="description" content="Learn about VGS Academy's mission to build strong academic foundations for students preparing for IIT-JEE, Sainik School and Olympiads.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%230B1F4D%22/><text x=%2250%22 y=%2266%22 font-size=%2244%22 fill=%22%23D4AF37%22 text-anchor=%22middle%22 font-family=%22serif%22>V</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
 <link rel="stylesheet" href="css/style.css">
+<script src="https://accounts.google.com/gsi/client" async></script>
 </head>
 <body>
 
 <header class="navbar" id="navbar">
   <div class="container">
     <a href="index.html" class="brand">
-      <span class="brand-mark">V</span>
-      <span class="brand-text"><span class="name">VGS Academy</span><span class="tag">Strong Foundation · Bright Future</span></span>
+      <span class="brand-mark cms-nav-icon">V</span>
+      <span class="brand-text"><span class="name"><span class="vgs-text">VGS</span> <span class="academy-text">Academy</span></span><span class="tag">Strong Foundation · Bright Future</span></span>
     </a>
     <nav class="nav-links">
       <a href="index.html">Home</a>
@@ -27,14 +28,17 @@
       <a href="gallery.html">Gallery</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <div class="nav-cta"><a href="contact.html" class="btn btn-gold btn-sm">Enroll Now</a></div>
+    <div class="nav-cta">
+      <a href="contact.html" class="btn btn-gold btn-sm"><i class="fa-solid fa-graduation-cap" style="margin-right: 5px;"></i>Enroll Now</a>
+      <div id="auth-container" class="auth-container"></div>
+    </div>
     <button class="nav-toggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
   </div>
 </header>
 
 <div class="mobile-menu">
   <div class="mobile-menu-top">
-    <span class="brand-text"><span class="name" style="color:#fff;">VGS Academy</span></span>
+    <span class="brand-text"><span class="name"><span class="vgs-text">VGS</span> <span class="academy-text">Academy</span></span></span>
     <button class="mobile-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
   </div>
   <a href="index.html">Home</a>
@@ -42,7 +46,7 @@
   <a href="courses.html">Courses</a>
   <a href="gallery.html">Gallery</a>
   <a href="contact.html">Contact</a>
-  <a href="contact.html" class="btn btn-gold" style="margin-top:26px; font-size:1rem;">Enroll Now</a>
+  <a href="contact.html" class="btn btn-gold" style="margin-top:26px; font-size:1rem;"><i class="fa-solid fa-graduation-cap" style="margin-right: 5px;"></i>Enroll Now</a>
 </div>
 
 <section class="page-hero">
@@ -112,7 +116,7 @@
       <span class="eyebrow" style="color:var(--gold-light);">Join Us</span>
       <h2 class="section-title" style="color:#fff;">Ready to be part of the <em style="color:var(--gold-light);">VGS family</em>?</h2>
       <div class="hero-ctas" style="justify-content:center; margin-top:20px;">
-        <a href="contact.html" class="btn btn-gold">Enroll Now</a>
+        <a href="contact.html" class="btn btn-gold"><i class="fa-solid fa-graduation-cap" style="margin-right: 5px;"></i>Enroll Now</a>
         <a href="courses.html" class="btn btn-outline-light">View Courses</a>
       </div>
     </div>
@@ -124,13 +128,13 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <div class="brand">
-          <span class="brand-mark">V</span>
-          <span class="brand-text"><span class="name" style="color:#fff;">VGS Academy</span><span class="tag">Strong Foundation · Bright Future</span></span>
+          <span class="brand-mark cms-nav-icon">V</span>
+          <span class="brand-text"><span class="name"><span class="vgs-text">VGS</span> <span class="academy-text">Academy</span></span><span class="tag">Strong Foundation · Bright Future</span></span>
         </div>
         <p>Premium coaching for IIT Foundation, Sainik School entrance, and Olympiad preparation — helping students in Vempalli build the fundamentals for a bright future.</p>
         <div class="footer-socials">
-          <a href="https://instagram.com/vgsacademyofficial" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="tel:9963736363" aria-label="Call"><i class="fa-solid fa-phone"></i></a>
+          <a href="https://instagram.com/vgsacademyofficial" class="cms-instagram" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="tel:9963736363" class="cms-phone" aria-label="Call"><i class="fa-solid fa-phone"></i></a>
           <a href="https://wa.me/919963736363" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
         </div>
       </div>
@@ -154,9 +158,9 @@
       </div>
       <div>
         <h4>Contact Details</h4>
-        <div class="contact-mini"><i class="fa-solid fa-phone"></i><span>9963736363</span></div>
+        <div class="contact-mini"><i class="fa-solid fa-phone"></i><span class="cms-phone-text">9963736363</span></div>
         <div class="contact-mini"><i class="fa-brands fa-instagram"></i><span>@vgsacademyofficial</span></div>
-        <div class="contact-mini"><i class="fa-solid fa-location-dot"></i><span>Jammi Chettu Veedhi, Near Sloka School, Vempalli</span></div>
+        <div class="contact-mini"><i class="fa-solid fa-location-dot"></i><span class="cms-location">Jammi Chettu Veedhi, Near Sloka School, Vempalli</span></div>
       </div>
     </div>
     <div class="footer-bottom">
@@ -168,11 +172,65 @@
 
 <div class="float-stack">
   <a href="#" class="float-btn top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
-  <a href="tel:9963736363" class="float-btn call" aria-label="Call Now"><i class="fa-solid fa-phone"></i></a>
+  <a href="tel:9963736363" class="cms-phone float-btn call" aria-label="Call Now"><i class="fa-solid fa-phone"></i></a>
   <a href="https://wa.me/919963736363" target="_blank" rel="noopener" class="float-btn whatsapp" aria-label="WhatsApp"><span class="float-ping"></span><i class="fa-brands fa-whatsapp"></i></a>
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 <script src="js/script.js"></script>
+
+<!-- ===================== DYNAMIC CMS INTEGRATION ===================== -->
+<script>
+document.addEventListener('DOMContentLoaded', async function() {
+  try {
+    const res = await fetch('/api/settings');
+    const data = await res.json();
+    if (data.success && data.settings) {
+      
+      // Update Phone Numbers
+      const phoneNodes = document.querySelectorAll('.cms-phone');
+      phoneNodes.forEach(node => {
+        if (node.tagName === 'A') node.href = 'tel:' + data.settings.phone;
+        else node.textContent = data.settings.phone;
+      });
+      
+      const phoneTextNodes = document.querySelectorAll('.cms-phone-text');
+      phoneTextNodes.forEach(node => {
+        node.textContent = data.settings.phone;
+      });
+
+      // Update Instagram Links
+      const instaNodes = document.querySelectorAll('.cms-instagram');
+      instaNodes.forEach(node => {
+        if (node.tagName === 'A') node.href = data.settings.instagram;
+      });
+
+      // Update Location
+      const locNodes = document.querySelectorAll('.cms-location');
+      locNodes.forEach(node => {
+        node.textContent = data.settings.location;
+      });
+
+      // Update Nav Brand Logo / Favicon
+      const navIconNodes = document.querySelectorAll('.cms-nav-icon');
+      navIconNodes.forEach(node => {
+        if (node.tagName === 'IMG') {
+          node.src = data.settings.nav_icon;
+        } else {
+          // It's the span.brand-mark, replace it with an image if it's an image URL, or keep text if it's just a letter
+          if (data.settings.nav_icon.startsWith('http') || data.settings.nav_icon.startsWith('data:image')) {
+            node.innerHTML = `<img src="${data.settings.nav_icon}" style="width:100%; height:100%; object-fit:contain;">`;
+            node.style.background = 'transparent';
+            node.style.border = 'none';
+          } else {
+            node.textContent = data.settings.nav_icon.charAt(0);
+          }
+        }
+      });
+    }
+  } catch(e) { console.error('CMS Settings Fetch Failed', e); }
+});
+</script>
 </body>
+
 </html>

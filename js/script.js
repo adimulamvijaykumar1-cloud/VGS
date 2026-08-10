@@ -1,7 +1,94 @@
 /* ==========================================================================
    VGS ACADEMY — Site Script
    ========================================================================== */
-document.addEventListener('DOMContentLoaded', function () {
+
+/* ---------- Google Auth Callback ---------- */
+window.handleCredentialResponse = async (response) => {
+  try {
+    const res = await fetch('/api/auth/google-login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ credential: response.credential })
+    });
+    const data = await res.json();
+    if (data.success) {
+      window.location.reload();
+    } else {
+      console.error('Login failed:', data.error);
+    }
+  } catch (err) {
+    console.error('Auth error:', err);
+  }
+};
+
+/* ---------- Render Profile or Login Button ---------- */
+function renderProfileMenu(user) {
+  const container = document.getElementById('auth-container');
+  if (!container) return;
+  
+  if (user) {
+    const profilePic = user.picture;
+    const innerContent = profilePic ? `<img src="${profilePic}" style="width:100%; height:100%; object-fit:cover; border-radius:50%;">` : `<i class="fa-solid fa-user"></i>`;
+    
+    container.innerHTML = `
+      <div class="profile-icon-btn" id="profile-toggle" title="${user.name}" style="width: 42px; height: 42px; border-radius: 50%; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); cursor: pointer; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1.2rem; overflow: hidden;">
+        ${innerContent}
+      </div>
+    `;
+    
+    document.getElementById('profile-toggle').addEventListener('click', (e) => {
+      e.preventDefault();
+      window.location.href = 'profile.html';
+    });
+    
+  } else {
+    // Render Google button
+    container.innerHTML = `<div id="g_id_onload"
+      data-client_id="638149794802-79bhlcut9ucie9cgtuq1g2jm8s0cveth.apps.googleusercontent.com"
+      data-context="signin"
+      data-ux_mode="popup"
+      data-callback="handleCredentialResponse"
+      data-auto_prompt="false">
+    </div>
+    <div class="g_id_signin"
+      data-type="icon"
+      data-shape="circle"
+      data-theme="outline"
+      data-text="signin_with"
+      data-size="large">
+    </div>`;
+    // Re-initialize Google Sign-In if library is already loaded
+    if (window.google && google.accounts && google.accounts.id) {
+      google.accounts.id.initialize({
+        client_id: '638149794802-79bhlcut9ucie9cgtuq1g2jm8s0cveth.apps.googleusercontent.com',
+        callback: handleCredentialResponse
+      });
+      google.accounts.id.renderButton(container.querySelector('.g_id_signin'), { type: "icon", theme: "outline", size: "large", shape: "circle" });
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', async function () {
+
+  /* ---------- Check Session on Load ---------- */
+  const container = document.getElementById('auth-container');
+  if (container) {
+    try {
+      const res = await fetch('/api/auth/session');
+      const data = await res.json();
+      renderProfileMenu(data.user);
+    } catch (err) {
+      renderProfileMenu(null);
+    }
+  }
+
+  /* Close dropdown when clicking outside */
+  document.addEventListener('click', (e) => {
+    const dropdown = document.getElementById('profile-dropdown');
+    if (dropdown && dropdown.classList.contains('show') && !e.target.closest('.auth-container')) {
+      dropdown.classList.remove('show');
+    }
+  });
 
   /* ---------- Sticky Navbar ---------- */
   const navbar = document.querySelector('.navbar');
@@ -93,9 +180,9 @@ document.addEventListener('DOMContentLoaded', function () {
       const imageSrc = item.getAttribute('data-image') || '';
       const icon = item.getAttribute('data-icon') || 'fa-image';
       const tone = item.querySelector('.g-bg')?.className.match(/tone-\d/)?.[0] || 'tone-1';
-      
+
       lightboxBox.className = 'lightbox-box ' + tone;
-      
+
       if (imageSrc) {
         lightboxBox.innerHTML = `
           <img src="${imageSrc}" alt="${label}" style="max-width:100%; max-height:72vh; object-fit:contain; border-radius:var(--radius-sm); box-shadow:var(--shadow-lg);">
@@ -107,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
           <div style="font-family:var(--ff-display); font-size:1.3rem; margin-top:16px;">${label}</div>
         `;
       }
-      
+
       lightbox.classList.add('open');
     });
   });
@@ -119,39 +206,39 @@ document.addEventListener('DOMContentLoaded', function () {
   if (contactForm) {
     contactForm.addEventListener('submit', async function (e) {
       e.preventDefault();
-      
+
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const successBox = document.querySelector('.form-success');
-      
+
       // Remove any existing error boxes
       const oldErrorBox = contactForm.querySelector('.form-error');
       if (oldErrorBox) oldErrorBox.remove();
-      
+
       // Get form inputs
       const nameInput = document.getElementById('name');
       const phoneInput = document.getElementById('phone');
       const classInput = document.getElementById('class');
       const messageInput = document.getElementById('message');
-      
+
       const formData = {
         name: nameInput ? nameInput.value : '',
         phone: phoneInput ? phoneInput.value : '',
         class: classInput ? classInput.value : '',
         message: messageInput ? messageInput.value : ''
       };
-      
+
       // Set loading state on button
       const originalBtnText = submitBtn.innerHTML;
       submitBtn.disabled = true;
       submitBtn.innerHTML = 'Sending Enquiry... <i class="fa-solid fa-spinner fa-spin"></i>';
       if (successBox) successBox.classList.remove('show');
-      
+
       // Detect if accessed via file protocol (direct browser double-click)
       // and use the localhost API server, otherwise use relative path.
-      const API_URL = (window.location.protocol === 'file:') 
-        ? 'http://localhost:5000/api/enquiry' 
+      const API_URL = (window.location.protocol === 'file:')
+        ? 'http://localhost:5000/api/enquiry'
         : '/api/enquiry';
-      
+
       try {
         const response = await fetch(API_URL, {
           method: 'POST',
@@ -160,9 +247,9 @@ document.addEventListener('DOMContentLoaded', function () {
           },
           body: JSON.stringify(formData)
         });
-        
+
         const data = await response.json();
-        
+
         if (response.ok && data.success) {
           if (successBox) {
             successBox.classList.add('show');
@@ -172,10 +259,10 @@ document.addEventListener('DOMContentLoaded', function () {
           // Formulate WhatsApp message text
           const messageText = `Hello VGS Academy, I would like to enquire about admission.\n\n*Details:*\n- *Name:* ${formData.name}\n- *Phone:* ${formData.phone}\n- *Class:* ${formData.class}\n- *Message:* ${formData.message || 'None'}`;
           const waUrl = `https://wa.me/919963736363?text=${encodeURIComponent(messageText)}`;
-          
+
           // Try to open WhatsApp in a new tab
           const newWindow = window.open(waUrl, '_blank');
-          
+
           // Fallback to direct redirect if popup blocker prevented the new tab
           if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
             window.location.href = waUrl;
@@ -209,7 +296,7 @@ document.addEventListener('DOMContentLoaded', function () {
         margin-bottom: 22px;
       `;
       errorBox.innerHTML = `<i class="fa-solid fa-circle-exclamation" style="font-size: 1.1rem;"></i> <span>${message}</span>`;
-      
+
       contactForm.insertBefore(errorBox, contactForm.firstChild);
       errorBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
@@ -234,3 +321,6 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
 });
+
+
+

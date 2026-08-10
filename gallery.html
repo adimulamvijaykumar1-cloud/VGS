@@ -1,150 +1,503 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gallery | VGS Academy</title>
-<meta name="description" content="Take a look inside VGS Academy — classrooms, teaching moments, events, student activities, and award ceremonies.">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%230B1F4D%22/><text x=%2250%22 y=%2266%22 font-size=%2244%22 fill=%22%23D4AF37%22 text-anchor=%22middle%22 font-family=%22serif%22>V</text></svg>">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | VGS Academy</title>
+  <meta name="description"
+    content="Take a look inside VGS Academy — classrooms, teaching moments, events, student activities, and award ceremonies.">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%230B1F4D%22/><text x=%2250%22 y=%2266%22 font-size=%2244%22 fill=%22%23D4AF37%22 text-anchor=%22middle%22 font-family=%22serif%22>V</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&family=Montserrat:wght@600;700;800&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://accounts.google.com/gsi/client" async></script>
 </head>
+
 <body>
 
-<header class="navbar" id="navbar">
-  <div class="container">
-    <a href="index.html" class="brand">
-      <span class="brand-mark">V</span>
-      <span class="brand-text"><span class="name">VGS Academy</span><span class="tag">Strong Foundation · Bright Future</span></span>
-    </a>
-    <nav class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="courses.html">Courses</a>
-      <a href="gallery.html" class="active">Gallery</a>
-      <a href="contact.html">Contact</a>
-    </nav>
-    <div class="nav-cta"><a href="contact.html" class="btn btn-gold btn-sm">Enroll Now</a></div>
-    <button class="nav-toggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
-  </div>
-</header>
-
-<div class="mobile-menu">
-  <div class="mobile-menu-top">
-    <span class="brand-text"><span class="name" style="color:#fff;">VGS Academy</span></span>
-    <button class="mobile-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
-  </div>
-  <a href="index.html">Home</a>
-  <a href="about.html">About</a>
-  <a href="courses.html">Courses</a>
-  <a href="gallery.html">Gallery</a>
-  <a href="contact.html">Contact</a>
-  <a href="contact.html" class="btn btn-gold" style="margin-top:26px; font-size:1rem;">Enroll Now</a>
-</div>
-
-<section class="page-hero">
-  <div class="container">
-    <div class="breadcrumb"><a href="index.html">Home</a> / Gallery</div>
-    <h1>Our Gallery</h1>
-    <p>A look inside classrooms, teaching sessions, events, activities, and the moments that make VGS Academy special.</p>
-  </div>
-</section>
-
-<section class="section-pad">
-  <div class="container">
-    <div class="gallery-grid reveal">
-      <div class="g-item wide" data-label="Focused Classroom Sessions" data-image="images/classroom.png" data-icon="fa-chalkboard"><div class="g-bg" style="background-image: url('images/classroom.png'); background-size: cover; background-position: center;"></div><div class="g-overlay"></div><div class="g-label">Classroom</div></div>
-      <div class="g-item tall" data-label="Interactive Teaching Moments" data-image="images/interactive_teaching.png" data-icon="fa-person-chalkboard"><div class="g-bg" style="background-image: url('images/interactive_teaching.png'); background-size: cover; background-position: center;"></div><div class="g-overlay"></div><div class="g-label">Teaching</div></div>
-      <div class="g-item" data-label="Academy Events" data-image="images/academy_events.jpg" data-icon="fa-calendar-days"><div class="g-bg" style="background-image: url('images/academy_events.jpg'); background-size: cover; background-position: center;"></div><div class="g-overlay"></div><div class="g-label">Events</div></div>
-      <div class="g-item" data-label="Student Activities" data-image="images/student_activities.png" data-icon="fa-people-group"><div class="g-bg" style="background-image: url('images/student_activities.png'); background-size: cover; background-position: center;"></div><div class="g-overlay"></div><div class="g-label">Student Activities</div></div>
-      <div class="g-item" data-label="Awards &amp; Recognition" data-image="images/awards_recognition.jpg" data-icon="fa-trophy"><div class="g-bg" style="background-image: url('images/awards_recognition.jpg'); background-size: cover; background-position: center;"></div><div class="g-overlay"></div><div class="g-label">Awards</div></div>
-      <div class="g-item wide" data-label="Doubt Clearing Sessions" data-icon="fa-comments"><div class="g-bg tone-3"><i class="fa-solid fa-comments"></i></div><div class="g-overlay"></div><div class="g-label">Doubt Clearing</div></div>
-      <div class="g-item" data-label="Weekly Test Days" data-icon="fa-file-pen"><div class="g-bg tone-2"><i class="fa-solid fa-file-pen"></i></div><div class="g-overlay"></div><div class="g-label">Weekly Tests</div></div>
-      <div class="g-item tall" data-label="Olympiad Training" data-icon="fa-medal"><div class="g-bg tone-1"><i class="fa-solid fa-medal"></i></div><div class="g-overlay"></div><div class="g-label">Olympiad Training</div></div>
-      <div class="g-item" data-label="Sainik School Batch" data-icon="fa-shield-halved"><div class="g-bg tone-5"><i class="fa-solid fa-shield-halved"></i></div><div class="g-overlay"></div><div class="g-label">Sainik School Batch</div></div>
-      <div class="g-item" data-label="Parent Meetings" data-image="images/parents_meeting.jpg" data-icon="fa-handshake"><div class="g-bg" style="background-image: url('images/parents_meeting.jpg'); background-size: cover; background-position: center;"></div><div class="g-overlay"></div><div class="g-label">Parent Meetings</div></div>
-    </div>
-    <p style="text-align:center; color:var(--ink-muted); margin-top:30px; font-size:.85rem;" class="reveal"><i class="fa-solid fa-circle-info"></i>&nbsp; Click any tile to preview. Photos shown are placeholders — actual academy photographs coming soon.</p>
-  </div>
-</section>
-
-<section class="section-pad bg-navy-deep" style="padding:80px 0;">
-  <div class="container" style="text-align:center;">
-    <div class="reveal">
-      <span class="eyebrow" style="color:var(--gold-light);">Come See for Yourself</span>
-      <h2 class="section-title" style="color:#fff;">Visit our <em style="color:var(--gold-light);">campus</em> in Vempalli</h2>
-      <div class="hero-ctas" style="justify-content:center; margin-top:20px;">
-        <a href="contact.html" class="btn btn-gold">Book a Visit</a>
-        <a href="tel:9963736363" class="btn btn-outline-light"><i class="fa-solid fa-phone"></i> Call 9963736363</a>
+  <header class="navbar" id="navbar">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <span class="brand-mark cms-nav-icon">V</span>
+        <span class="brand-text"><span class="name"><span class="vgs-text">VGS</span> <span
+              class="academy-text">Academy</span></span><span class="tag">Strong Foundation · Bright
+            Future</span></span>
+      </a>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="courses.html">Courses</a>
+        <a href="gallery.html" class="active">Gallery</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <div class="nav-cta">
+        <a href="contact.html" class="btn btn-gold btn-sm"><i class="fa-solid fa-graduation-cap"
+            style="margin-right: 5px;"></i>Enroll Now</a>
+        <div id="auth-container" class="auth-container"></div>
       </div>
+      <button class="nav-toggle" aria-label="Open menu"><i class="fa-solid fa-bars"></i></button>
     </div>
-  </div>
-</section>
+  </header>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="brand">
-          <span class="brand-mark">V</span>
-          <span class="brand-text"><span class="name" style="color:#fff;">VGS Academy</span><span class="tag">Strong Foundation · Bright Future</span></span>
+  <div class="mobile-menu">
+    <div class="mobile-menu-top">
+      <span class="brand-text"><span class="name"><span class="vgs-text">VGS</span> <span
+            class="academy-text">Academy</span></span></span>
+      <button class="mobile-close" aria-label="Close menu"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="courses.html">Courses</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="contact.html">Contact</a>
+    <a href="contact.html" class="btn btn-gold" style="margin-top:26px; font-size:1rem;"><i
+        class="fa-solid fa-graduation-cap" style="margin-right: 5px;"></i>Enroll Now</a>
+  </div>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> / Gallery</div>
+      <h1>Our Gallery</h1>
+      <p>A look inside classrooms, teaching sessions, events, activities, and the moments that make VGS Academy special.
+      </p>
+    </div>
+  </section>
+
+  <style>
+    /* Category Filters */
+    .gallery-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 40px;
+    }
+
+    .filter-btn {
+      background: rgba(11, 31, 77, 0.05); /* Soft, translucent navy */
+      border: none;
+      color: var(--ink-muted);
+      padding: 12px 28px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--gold);
+      color: var(--navy);
+      box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* New Dynamic Lightbox */
+    .dynamic-lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .dynamic-lightbox.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .dl-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .dl-img {
+      max-width: 100%;
+      max-height: 80vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .dl-caption {
+      color: white;
+      margin-top: 15px;
+      font-size: 1.2rem;
+      text-align: center;
+    }
+
+    .dl-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      z-index: 10000;
+    }
+
+    .dl-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: white;
+      font-size: 40px;
+      cursor: pointer;
+      user-select: none;
+      padding: 20px;
+      transition: 0.2s;
+    }
+
+    .dl-nav:hover {
+      color: var(--gold);
+    }
+
+    .dl-prev {
+      left: 10px;
+    }
+
+    .dl-next {
+      right: 10px;
+    }
+  </style>
+
+  <section class="section-pad">
+    <div class="container">
+      <div class="gallery-filters" id="gallery-filters">
+        <!-- Buttons generated via JS -->
+      </div>
+
+      <div id="dynamic-gallery-container" class="gallery-grid" style="margin-top:10px; margin-bottom:40px;">
+        <div style="grid-column: 1 / -1; text-align:center; padding: 50px;">
+          <i class="fa-solid fa-circle-notch fa-spin" style="font-size:2rem; color:var(--gold);"></i>
+          <p style="margin-top:20px;">Loading gallery...</p>
         </div>
-        <p>Premium coaching for IIT Foundation, Sainik School entrance, and Olympiad preparation — helping students in Vempalli build the fundamentals for a bright future.</p>
-        <div class="footer-socials">
-          <a href="https://instagram.com/vgsacademyofficial" target="_blank" rel="noopener" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="tel:9963736363" aria-label="Call"><i class="fa-solid fa-phone"></i></a>
-          <a href="https://wa.me/919963736363" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Element -->
+  <div class="dynamic-lightbox" id="dynamic-lightbox">
+    <i class="fa-solid fa-xmark dl-close" id="dl-close"></i>
+    <i class="fa-solid fa-chevron-left dl-nav dl-prev" id="dl-prev"></i>
+    <i class="fa-solid fa-chevron-right dl-nav dl-next" id="dl-next"></i>
+    <div class="dl-content">
+      <img src="" class="dl-img" id="dl-img">
+      <div class="dl-caption" id="dl-caption"></div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async function () {
+      let allImages = [];
+      let currentFilteredImages = [];
+      let currentIndex = 0;
+
+      try {
+        const res = await fetch('/api/gallery');
+        const data = await res.json();
+        if (data.success && data.images.length > 0) {
+          allImages = data.images;
+
+          // Fetch categories from API
+          let categories = ['All'];
+          try {
+            const catRes = await fetch('/api/categories');
+            const catData = await catRes.json();
+            if (catData.success && catData.categories) {
+              categories = ['All', ...catData.categories.map(c => c.name)];
+            }
+          } catch(e) {
+            console.error("Error fetching categories", e);
+            // Fallback to extraction if API fails
+            categories = ['All', ...new Set(allImages.map(img => img.category || 'All').filter(c => c !== 'All'))];
+          }
+
+          // Render Filter Buttons
+          const filterContainer = document.getElementById('gallery-filters');
+          filterContainer.innerHTML = categories.map(cat =>
+            `<button class="filter-btn ${cat === 'All' ? 'active' : ''}" data-cat="${cat}">${cat}</button>`
+          ).join('');
+
+          // Add Filter Event Listeners
+          document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+              document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+              e.target.classList.add('active');
+              const selectedCat = e.target.getAttribute('data-cat');
+              filterGallery(selectedCat);
+            });
+          });
+
+          // Render ALL images into the DOM ONCE to prevent lag
+          const container = document.getElementById('dynamic-gallery-container');
+          const pattern = ['wide', 'tall', '', '', '', 'wide', '', 'tall', '', ''];
+
+          container.innerHTML = allImages.map((img, index) => {
+            const p = pattern[index % 10];
+            const cat = img.category || 'All';
+            // We use dataset.cat and store original index
+            return `
+        <div class="g-item ${p} gallery-tile" data-cat="${cat}" data-index="${index}" onclick="openLightbox(${index})" style="cursor:pointer; transition: opacity 0.3s ease;">
+          <div class="g-bg" style="background-image: url('${img.image_url}'); background-size: cover; background-position: center;"></div>
+          <div class="g-overlay"></div>
+          <div class="g-label" style="bottom: 20px;">${img.caption || ''}</div>
+        </div>
+        `;
+          }).join('');
+
+          // Check if there's a "No Images" message needed
+          const noDataMsg = document.createElement('p');
+          noDataMsg.id = 'no-gallery-msg';
+          noDataMsg.style.cssText = 'grid-column: 1 / -1; text-align:center; padding:50px; display:none;';
+          noDataMsg.textContent = 'No images in this category.';
+          container.appendChild(noDataMsg);
+
+          // Initial Filter State
+          filterGallery('All');
+
+        } else if (data.success) {
+          document.getElementById('dynamic-gallery-container').innerHTML = '<p style="grid-column: 1 / -1; text-align:center; padding:50px;">No images available in the gallery yet.</p>';
+        }
+      } catch (e) {
+        console.error('Failed to load gallery', e);
+      }
+
+      function filterGallery(category) {
+        // Update the array for the lightbox navigation
+        currentFilteredImages = category === 'All' ? allImages : allImages.filter(img => (img.category || 'All') === category);
+
+        // Toggle CSS display rather than rebuilding DOM to eliminate lag/flicker
+        const tiles = document.querySelectorAll('.gallery-tile');
+        let visibleCount = 0;
+
+        tiles.forEach(tile => {
+          const itemCat = tile.getAttribute('data-cat');
+          if (category === 'All' || itemCat === category) {
+            tile.style.display = '';
+            visibleCount++;
+          } else {
+            tile.style.display = 'none';
+          }
+        });
+
+        const noMsg = document.getElementById('no-gallery-msg');
+        if (noMsg) {
+          noMsg.style.display = visibleCount === 0 ? '' : 'none';
+        }
+      }
+
+      // Lightbox Logic
+      const lightbox = document.getElementById('dynamic-lightbox');
+      const lbImg = document.getElementById('dl-img');
+      const lbCap = document.getElementById('dl-caption');
+
+      // Keep track of which index IN THE FILTERED ARRAY we are viewing
+      let currentFilteredIndex = 0;
+
+      window.openLightbox = function (globalIndex) {
+        // Find where this global index sits in the current filtered array
+        const clickedImg = allImages[globalIndex];
+        currentFilteredIndex = currentFilteredImages.indexOf(clickedImg);
+        if (currentFilteredIndex === -1) currentFilteredIndex = 0; // fallback
+
+        updateLightbox();
+        lightbox.classList.add('show');
+      };
+
+      function updateLightbox() {
+        if (currentFilteredImages.length === 0) return;
+        const img = currentFilteredImages[currentFilteredIndex];
+        lbImg.src = img.image_url;
+        lbCap.textContent = img.caption || '';
+      }
+
+      document.getElementById('dl-close').addEventListener('click', () => lightbox.classList.remove('show'));
+
+      document.getElementById('dl-prev').addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentFilteredIndex = (currentFilteredIndex > 0) ? currentFilteredIndex - 1 : currentFilteredImages.length - 1;
+        updateLightbox();
+      });
+
+      document.getElementById('dl-next').addEventListener('click', (e) => {
+        e.stopPropagation();
+        currentFilteredIndex = (currentFilteredIndex < currentFilteredImages.length - 1) ? currentFilteredIndex + 1 : 0;
+        updateLightbox();
+      });
+
+      // Close when clicking outside image
+      lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) lightbox.classList.remove('show');
+      });
+
+      // Keyboard support
+      document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('show')) return;
+        if (e.key === 'Escape') lightbox.classList.remove('show');
+        if (e.key === 'ArrowLeft') document.getElementById('dl-prev').click();
+        if (e.key === 'ArrowRight') document.getElementById('dl-next').click();
+      });
+    });
+  </script>
+
+  <section class="section-pad bg-navy-deep" style="padding:80px 0;">
+    <div class="container" style="text-align:center;">
+      <div class="reveal">
+        <span class="eyebrow" style="color:var(--gold-light);">Come See for Yourself</span>
+        <h2 class="section-title" style="color:#fff;">Visit our <em style="color:var(--gold-light);">campus</em> in
+          Vempalli</h2>
+        <div class="hero-ctas" style="justify-content:center; margin-top:20px;">
+          <a href="contact.html" class="btn btn-gold">Book a Visit</a>
+          <a href="tel:9963736363" class="cms-phone" class="btn btn-outline-light"><i class="fa-solid fa-phone"></i>
+            Call 9963736363</a>
         </div>
       </div>
-      <div>
-        <h4>Quick Links</h4>
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="courses.html">Courses</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <span class="brand-mark cms-nav-icon">V</span>
+            <span class="brand-text"><span class="name"><span class="vgs-text">VGS</span> <span
+                  class="academy-text">Academy</span></span><span class="tag">Strong Foundation · Bright
+                Future</span></span>
+          </div>
+          <p>Premium coaching for IIT Foundation, Sainik School entrance, and Olympiad preparation — helping students in
+            Vempalli build the fundamentals for a bright future.</p>
+          <div class="footer-socials">
+            <a href="https://instagram.com/vgsacademyofficial" class="cms-instagram" target="_blank" rel="noopener"
+              aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="tel:9963736363" class="cms-phone" aria-label="Call"><i class="fa-solid fa-phone"></i></a>
+            <a href="https://wa.me/919963736363" target="_blank" rel="noopener" aria-label="WhatsApp"><i
+                class="fa-brands fa-whatsapp"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Courses</h4>
+          <ul>
+            <li><a href="courses.html#iit-foundation">IIT Foundation</a></li>
+            <li><a href="courses.html#sainik-school">Sainik School Coaching</a></li>
+            <li><a href="courses.html#olympiad">Olympiad Preparation</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact Details</h4>
+          <div class="contact-mini"><i class="fa-solid fa-phone"></i><span class="cms-phone-text">9963736363</span>
+          </div>
+          <div class="contact-mini"><i class="fa-brands fa-instagram"></i><span>@vgsacademyofficial</span></div>
+          <div class="contact-mini"><i class="fa-solid fa-location-dot"></i><span class="cms-location">Jammi Chettu
+              Veedhi, Near Sloka School, Vempalli</span></div>
+        </div>
       </div>
-      <div>
-        <h4>Courses</h4>
-        <ul>
-          <li><a href="courses.html#iit-foundation">IIT Foundation</a></li>
-          <li><a href="courses.html#sainik-school">Sainik School Coaching</a></li>
-          <li><a href="courses.html#olympiad">Olympiad Preparation</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact Details</h4>
-        <div class="contact-mini"><i class="fa-solid fa-phone"></i><span>9963736363</span></div>
-        <div class="contact-mini"><i class="fa-brands fa-instagram"></i><span>@vgsacademyofficial</span></div>
-        <div class="contact-mini"><i class="fa-solid fa-location-dot"></i><span>Jammi Chettu Veedhi, Near Sloka School, Vempalli</span></div>
+      <div class="footer-bottom">
+        <span>© 2026 VGS Academy. All rights reserved.</span>
+        <span>Designed with care for the future achievers of Vempalli.</span>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© 2026 VGS Academy. All rights reserved.</span>
-      <span>Designed with care for the future achievers of Vempalli.</span>
+  </footer>
+
+  <div class="float-stack">
+    <a href="#" class="float-btn top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
+    <a href="tel:9963736363" class="cms-phone float-btn call" aria-label="Call Now"><i
+        class="fa-solid fa-phone"></i></a>
+    <a href="https://wa.me/919963736363" target="_blank" rel="noopener" class="float-btn whatsapp"
+      aria-label="WhatsApp"><span class="float-ping"></span><i class="fa-brands fa-whatsapp"></i></a>
+  </div>
+
+  <div class="lightbox">
+    <div class="lightbox-close-wrap">
+      <button class="lightbox-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
     </div>
+    <div class="lightbox-box"></div>
   </div>
-</footer>
 
-<div class="float-stack">
-  <a href="#" class="float-btn top" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></a>
-  <a href="tel:9963736363" class="float-btn call" aria-label="Call Now"><i class="fa-solid fa-phone"></i></a>
-  <a href="https://wa.me/919963736363" target="_blank" rel="noopener" class="float-btn whatsapp" aria-label="WhatsApp"><span class="float-ping"></span><i class="fa-brands fa-whatsapp"></i></a>
-</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="js/script.js"></script>
 
-<div class="lightbox">
-  <div class="lightbox-close-wrap">
-    <button class="lightbox-close" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-  </div>
-  <div class="lightbox-box"></div>
-</div>
+  <!-- ===================== DYNAMIC CMS INTEGRATION ===================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async function () {
+      try {
+        const res = await fetch('/api/settings');
+        const data = await res.json();
+        if (data.success && data.settings) {
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-<script src="js/script.js"></script>
+          // Update Phone Numbers
+          const phoneNodes = document.querySelectorAll('.cms-phone');
+          phoneNodes.forEach(node => {
+            if (node.tagName === 'A') node.href = 'tel:' + data.settings.phone;
+            else node.textContent = data.settings.phone;
+          });
+
+          const phoneTextNodes = document.querySelectorAll('.cms-phone-text');
+          phoneTextNodes.forEach(node => {
+            node.textContent = data.settings.phone;
+          });
+
+          // Update Instagram Links
+          const instaNodes = document.querySelectorAll('.cms-instagram');
+          instaNodes.forEach(node => {
+            if (node.tagName === 'A') node.href = data.settings.instagram;
+          });
+
+          // Update Location
+          const locNodes = document.querySelectorAll('.cms-location');
+          locNodes.forEach(node => {
+            node.textContent = data.settings.location;
+          });
+
+          // Update Nav Brand Logo / Favicon
+          const navIconNodes = document.querySelectorAll('.cms-nav-icon');
+          navIconNodes.forEach(node => {
+            if (node.tagName === 'IMG') {
+              node.src = data.settings.nav_icon;
+            } else {
+              // It's the span.brand-mark, replace it with an image if it's an image URL, or keep text if it's just a letter
+              if (data.settings.nav_icon.startsWith('http') || data.settings.nav_icon.startsWith('data:image')) {
+                node.innerHTML = `<img src="${data.settings.nav_icon}" style="width:100%; height:100%; object-fit:contain;">`;
+                node.style.background = 'transparent';
+                node.style.border = 'none';
+              } else {
+                node.textContent = data.settings.nav_icon.charAt(0);
+              }
+            }
+          });
+        }
+      } catch (e) { console.error('CMS Settings Fetch Failed', e); }
+    });
+  </script>
 </body>
+
 </html>
