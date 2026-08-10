@@ -671,13 +671,12 @@ section{ position:relative; overflow: hidden; }
 }
 .g-item .g-overlay{
   position:absolute; inset:0; background: linear-gradient(0deg, rgba(7,20,51,0.82), transparent 55%);
-  opacity:0; transition: opacity .2s ease;
+  opacity:1; transition: opacity .2s ease;
 }
 .g-item:hover .g-bg{ transform: scale(1.12) rotate(2deg); }
-.g-item:hover .g-overlay{ opacity:1; }
 .g-item .g-label{
   position:relative; z-index:2; padding: 18px; color:#fff; font-family: var(--ff-display); font-weight:600; font-size:1.05rem;
-  transform: translateY(10px); opacity:0; transition: all .2s ease;
+  transform: translateY(0); opacity:1; transition: all .2s ease;
 }
 .g-item:hover .g-label{ transform: translateY(0); opacity:1; }
 .g-item.tall{ grid-row: span 2; }
