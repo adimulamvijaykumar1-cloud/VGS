@@ -102,6 +102,14 @@ def init_db():
             pass
 
 
+        # Create gallery categories table
+        db.execute('''
+            CREATE TABLE IF NOT EXISTS gallery_categories (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT UNIQUE NOT NULL
+            )
+        ''')
+
         # Create gallery table
         db.execute('''
             CREATE TABLE IF NOT EXISTS gallery (
