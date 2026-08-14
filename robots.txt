@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vgsacademy.pythonanywhere.com/sitemap.xml
