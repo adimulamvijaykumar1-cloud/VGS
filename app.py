@@ -550,6 +550,18 @@ def delete_gallery_image(image_id):
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
+@app.route('/sitemap.xml')
+def sitemap():
+    pages = ['', 'about.html', 'courses.html', 'gallery.html', 'contact.html']
+    base_url = request.host_url.rstrip('/')
+    
+    xml = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+    for page in pages:
+        xml += f'  <url>\n    <loc>{base_url}/{page}</loc>\n    <changefreq>weekly</changefreq>\n    <priority>0.8</priority>\n  </url>\n'
+    xml += '</urlset>'
+    
+    return xml, 200, {'Content-Type': 'application/xml'}
+
 @app.route('/google46bab2f089da2f5d.html')
 def google_site_verification():
     return "google-site-verification: google46bab2f089da2f5d.html"
