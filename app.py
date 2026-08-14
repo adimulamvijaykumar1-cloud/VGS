@@ -550,6 +550,10 @@ def delete_gallery_image(image_id):
     except Exception as e:
         return jsonify({'success': False, 'error': str(e)}), 500
 
+@app.route('/google46bab2f089da2f5d.html')
+def google_site_verification():
+    return "google-site-verification: google46bab2f089da2f5d.html"
+
 @app.route('/admin')
 def admin_page():
     # Flask templates folder defaults to 'templates/'
